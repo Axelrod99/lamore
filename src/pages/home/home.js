@@ -1,12 +1,13 @@
 import React from 'react'
-import aaa from '../../assets/icons/people/aaa.png'
 import add from '../../assets/icons/people/add.png'
 import { firstArray, scroll, scrolls } from '../../utils/data'
+import Card from './Card'
 
 
 const HomePage = () => {
+
   return (
-    <div className=''>
+    <div className='h-[100%]'>
       <div className='flex gap-20 my-5'>
 
         <p className='font-bold text-2xl'>Dollarz$2022</p>
@@ -20,7 +21,7 @@ const HomePage = () => {
 
 
                 {firstArray.map(firsts => 
-                  <div className={`rounded-2xl h-8 w-8  flex justify-center ${firsts.color}`}>
+                  <div className={`rounded-2xl h-8 w-8 flex justify-center ${firsts.color}`}>
                       <img className=' h-7 mt-1' src={firsts.Image} />
                   </div>
                 )}
@@ -41,6 +42,21 @@ const HomePage = () => {
           <p>{scrollz.name}</p>  
         )}
 
+      </div>
+
+
+      <div className='w-full flex overflow-x-scroll gap-5 bg-blue-100'>
+        <div>
+          <Card/>
+        </div>
+         
+        <div className='w-full min-w-[330px]'>
+          bbb
+        </div>
+
+        <div className='w-full min-w-[330px]'>
+          ccc
+        </div>
       </div>
     </div>
   )
