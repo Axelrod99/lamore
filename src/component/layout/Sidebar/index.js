@@ -36,7 +36,7 @@ const Sidebar = () => {
 
 
   return (
-    <div className=''>
+    <div className='text-sm'>
       <ul className='flex flex-col gap-10 m-5'>
         <li  className='flex items-center gap-2'>
             <img className='h-4 ' src={dashboard}/>

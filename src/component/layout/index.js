@@ -9,14 +9,14 @@ const Layout = ({children}) => {
       <Header/>
 
       <div className='flex'>
-        <div className='w-1/5'>
+        <div className='w-[15%]'>
           <Sidebar/>
         </div>
-        <main className='w-4/5'>
+        <main className='w-[85%]'>
             {children}
         </main>
       </div>
-      
+
       <Footer/>
     </div>
   )

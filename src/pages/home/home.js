@@ -2,6 +2,8 @@ import React from 'react'
 import add from '../../assets/icons/people/add.png'
 import { firstArray, scroll, scrolls } from '../../utils/data'
 import Card from './Card'
+import Done from './Done'
+import Progress from './Progress'
 
 
 const HomePage = () => {
@@ -36,7 +38,7 @@ const HomePage = () => {
       </div>
 
 
-      <div className='flex gap-10'>
+      <div className='flex gap-10 text-sm'>
         
         {scrolls.map(scrollz => 
           <p>{scrollz.name}</p>  
@@ -45,17 +47,17 @@ const HomePage = () => {
       </div>
 
 
-      <div className='w-full flex overflow-x-scroll gap-5 bg-blue-100'>
+      <div className='w-full flex overflow-x-scroll gap-5 bg-blue-100 p-5'>
         <div>
           <Card/>
         </div>
          
         <div className='w-full min-w-[330px]'>
-          bbb
+          <Progress/>
         </div>
 
         <div className='w-full min-w-[330px]'>
-          ccc
+          <Done/>
         </div>
       </div>
     </div>
