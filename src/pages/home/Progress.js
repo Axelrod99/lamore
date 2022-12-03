@@ -3,8 +3,10 @@ import plus from '../../assets/icons/plus.png'
 import eighty from '../../assets/icons/eighty.png'
 import comment from '../../assets/icons/comment.png'
 import addicon from '../../assets/icons/addicon.png'
+import { secondCard } from '../../utils/data'
 
-const Progress = () => {
+// const Progress = () => {
+export default function Progress () {
     return (
         <div className='w-full min-w-[330px] flex flex-col gap-3 '>
             <div className='flex items-center gap-2 w-full justify-between'>
@@ -16,34 +18,38 @@ const Progress = () => {
                 <img className='h-4' src={plus} />
             </div>
 
-            <div className='bg-white rounded-lg p-2 flex flex-col gap-3'>
-                <div className='flex justify-start text-xs'>
-                    <p>Low priority</p>
-                </div>
+            {secondCard.map(second =>
 
-                <div className='flex gap-5'>
-                    <div>
-                        <img className='' src={eighty} />
+                <div className='bg-white rounded-lg p-2 flex flex-col gap-3'>
+                    <div className={`flex justify-start px-2 w-full ${second.color}`}>
+                        <p className={`text-[8px] flex ${second.bg_color} px-1 rounded-sm font-bold`}>{second.priority} priority</p>
                     </div>
 
-                    <div className='flex flex-col '>
-                        <div className='flex flex-col items-start'>
-                            <p className='font-bold'>DJ selection</p>
-                            <p className='text-sm'>Currently in price negotiation phase.</p>
+                    <div className='flex gap-5'>
+                        <div>
+                            <img className='' src={eighty} />
                         </div>
 
+                        <div className='flex flex-col '>
+                            <div className='flex flex-col items-start'>
+                                <p className='font-bold'>{second.title}</p>
+                                <p className='text-sm'>{second.content}</p>
+                            </div>
 
-                        <div className='flex text-xs w-full justify-between my-3 px-5'>
-                            <p>Aug 18th</p>
-                            <img className='' src={comment} />
-                            <p>View</p>
 
+                            <div className='flex text-xs w-full justify-between my-3 px-5'>
+                                <p>{second.date}</p>
+                                <img className='' src={comment} />
+                                <p>View</p>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            
+            )}
+
+
             <div className='w-full min-w-[330px] h-14 bg-white mb-5 rounded-lg flex justify-center items-center'>
                 <img className='' src={addicon} />
             </div>
@@ -51,4 +57,3 @@ const Progress = () => {
     )
 }
 
-export default Progress

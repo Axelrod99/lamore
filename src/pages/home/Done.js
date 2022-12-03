@@ -17,33 +17,33 @@ const Done = () => {
                     <img className='h-4' src={plus} />
                 </div>
 
-                {thirdCard.map(cardz => 
-                    
+                {thirdCard.map(cardz =>
+
                     <div className='bg-white rounded-lg p-2 flex flex-col gap-3'>
-                    <div className='flex justify-start text-xs'>
-                        <p>{cardz.priority} priority</p>
-                    </div>
+                        <div className={`flex justify-start w-full ${cardz.color} px-2`}>
+                            <p className={`text-[8px] flex ${cardz.bg_color} px-1 rounded-sm font-bold`}>{cardz.priority} priority</p>
+                        </div>
 
-                    <img className='flex justify-center' src={cardz.Image} />
+                        <img className='flex justify-center' src={cardz.Image} />
 
-                    <div className='flex flex-col gap-2'>
-                        <div className='flex flex-col items-start gap-1'>
-                            <p className='font-bold'>{cardz.heading}</p>
-                            <p className='text-sm'>{cardz.subtitle}</p>
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col items-start gap-1'>
+                                <p className='font-bold'>{cardz.heading}</p>
+                                <p className='text-sm'>{cardz.subtitle}</p>
+                            </div>
+
+
+                            <div className='flex justify-between text-[9px] items-center'>
+
+                                <p className='bg-green-400 p-1 rounded-lg'>{cardz.validation}</p>
+
+
+                                <p>View</p>
+                            </div>
                         </div>
 
 
-                        <div className='flex justify-between text-xs items-center'>
-
-                            <p className='bg-green-400 p-1 rounded-lg'>{cardz.validation}</p>
-
-
-                            <p>View</p>
-                        </div>
                     </div>
-
-
-                </div>
 
                 )}
 

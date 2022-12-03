@@ -34,3 +34,12 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  overflow-x: hidden; 
+  overflow-y: hidden;
+}
+
+html{
+  overflow-x: hidden; 
+}
