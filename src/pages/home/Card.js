@@ -4,12 +4,11 @@ import arrow_circle_fill from '../../assets/icons/arrow_circle_fill.png'
 import comment from '../../assets/icons/comment.png'
 import addicon from '../../assets/icons/addicon.png'
 import select from '../../assets/icons/select.png'
-import { firstCard } from '../../utils/data'
 import { choices } from '../../utils/data'
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
 
 // const card = () => {
-export default function card() {
+export default function Card({firstCard}) {
 
     return (
         <div className='w-full min-w-[330px] flex flex-col gap-3 '>

@@ -3,10 +3,10 @@ import plus from '../../assets/icons/plus.png'
 import eighty from '../../assets/icons/eighty.png'
 import comment from '../../assets/icons/comment.png'
 import addicon from '../../assets/icons/addicon.png'
-import { secondCard } from '../../utils/data'
+// import { secondCard } from '../../utils/data'
 
 // const Progress = () => {
-export default function Progress () {
+export default function Progress ({secondCard}) {
     return (
         <div className='w-full min-w-[330px] flex flex-col gap-3 '>
             <div className='flex items-center gap-2 w-full justify-between'>

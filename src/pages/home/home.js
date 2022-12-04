@@ -1,15 +1,24 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 // import React from 'react'
 import add from '../../assets/icons/people/add.png'
-import { firstArray, scroll, scrolls } from '../../utils/data'
+import { firstArray, firstCard, scroll, scrolls, secondCard, thirdCard } from '../../utils/data'
 import Card from './Card'
 import Done from './Done'
 import Progress from './Progress'
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
+
 
 
 const HomePage = () => {
 
   const [activeTab, setActiveTab] = useState(scrolls[0].name);
+  const [allCards, setAllCards] = useState([firstCard, secondCard, thirdCard]);
+
+  function onDragEnd(result) {
+    const { source, destination } = result;
+  }
+
 
 
   return (
@@ -52,28 +61,41 @@ const HomePage = () => {
       </div>
 
 
-      { activeTab === scrolls[0].name &&  <div className='w-full flex overflow-x-scroll gap-5 bg-blue-100 p-5'>
-        <div>
-          <Card />
-        </div>
+      {activeTab === scrolls[0].name && <div className='w-full flex overflow-x-scroll gap-5 bg-blue-100 p-5'>
+        <DragDropContext onDragEnd={onDragEnd}>
+          {(provide, snapshot)}
+          {allCards.map((item, i) => {
+           return <Droppable key={i} droppableId={`${i}`}>
+              return (<div
+                ref={item.innerRef}
+              >
 
-        <div className='w-full min-w-[330px]'>
-          <Progress />
-        </div>
+                <Draggable
+                  key={item.i}
+                  draggableId={item.i}
+                  index={i}
+                >
+                  <Card firstCard={item} />
 
-        <div className='w-full min-w-[330px]'>
-          <Done />
-        </div>
-      </div>},
+                </Draggable>
+              </div>)
+            </Droppable>
+          })}
+        </DragDropContext>
 
 
 
-      { activeTab === scrolls[1].name && <div className='bg-red-200'>
+
+      </div>}
+
+
+
+      {activeTab === scrolls[1].name && <div className='bg-red-200'>
         another
       </div>}
 
     </div>
-    
+
   )
 }
 
