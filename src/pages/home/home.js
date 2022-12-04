@@ -63,7 +63,7 @@ const HomePage = () => {
 
       {activeTab === scrolls[0].name && <div className='w-full flex overflow-x-scroll gap-5 bg-blue-100 p-5'>
         <DragDropContext onDragEnd={onDragEnd}>
-          {(provide, snapshot)}
+          
           {allCards.map((item, i) => {
            return <Droppable key={i} droppableId={`${i}`}>
               return (<div
