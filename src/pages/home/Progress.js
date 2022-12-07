@@ -3,7 +3,7 @@ import plus from '../../assets/icons/plus.png'
 import eighty from '../../assets/icons/eighty.png'
 import comment from '../../assets/icons/comment.png'
 import addicon from '../../assets/icons/addicon.png'
-// import { secondCard } from '../../utils/data'
+import { secondCard } from '../../utils/data'
 
 // const Progress = () => {
 export default function Progress ({secondCard}) {

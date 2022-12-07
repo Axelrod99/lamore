@@ -62,51 +62,7 @@ export default function Card({firstCard}) {
 
 
 
-            {choices.map(choice =>
-
-                <div className='w-full min-w-[330px] bg-white p-3 flex flex-col gap-2 rounded-lg'>
-                    <div className='text-xs flex'>
-                        <p className={`text-[8px] ${choice.bg_color} ${choice.color} px-1 rounded-sm font-bold`}>{choice.priority} priority</p>
-                    </div>
-
-                    <div className='flex justify-start font-bold'>
-                        <p>{choice.title}</p>
-                    </div>
-
-                    <div className='text-sm flex flex-col gap-1'>
-                        <div className='font-semibold text-sm'>
-                            <p>{choice.subtitle}</p>
-                        </div>
-
-                        <div className='text-sm flex flex-col gap-1'>
-                            <div className='flex gap-2'>
-                                <div><img className='h-5' src={select} /></div>
-                                <p>{choice.option1}</p>
-                            </div>
-
-                            <div className='flex gap-2'>
-                                <div><img className='h-5' src={select} /></div>
-                                <p>{choice.option2}</p>
-                            </div>
-
-                            <div className='flex gap-2'>
-                                <div><img className='h-5' src={select} /></div>
-                                <p>{choice.option3}</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div className='flex text-xs w-full justify-between px-5'>
-                        <p>{choice.date}</p>
-                        <img className='' src={comment} />
-                        <p>View</p>
-
-                    </div>
-                </div>
-
-            )}
-
+           
             <div className='w-full min-w-[330px] h-14 bg-white mb-5 rounded-lg flex justify-center items-center'>
                 <img className='' src={addicon} />
             </div>

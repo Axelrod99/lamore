@@ -2,7 +2,7 @@
 import React from 'react'
 import plus from '../../assets/icons/plus.png'
 import addicon from '../../assets/icons/addicon.png'
-// import { thirdCard } from '../../utils/data'
+import { thirdCard } from '../../utils/data'
 
 
 

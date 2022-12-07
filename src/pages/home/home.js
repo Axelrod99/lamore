@@ -8,10 +8,15 @@ import {
   scrolls,
   secondCard,
   thirdCard,
+  choices
 } from "../../utils/data";
 import arrow_circle_fill from "../../assets/icons/arrow_circle_fill.png";
 import comment from "../../assets/icons/comment.png";
+import eighty from "../../assets/icons/eighty.png";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import Card from "../../pages/home/Card";
+import Progress from "./Progress";
+import Done from "./Done";
 
 // Start dnd functions
 
@@ -44,19 +49,17 @@ const grid = 8;
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: "none",
-  padding: grid * 2,
+
   margin: `0 0 ${grid}px 0`,
 
   // change background colour if dragging
-  background: isDragging ? "lightgreen" : "grey",
+  background: isDragging ? "lightgreen" : "",
 
   // styles we need to apply on draggables
   ...draggableStyle,
 });
 const getListStyle = (isDraggingOver) => ({
-  background: isDraggingOver ? "lightblue" : "lightgrey",
-  padding: grid,
-  width: 250,
+  background: isDraggingOver ? "lightblue" : "",
 });
 
 // End dnd functions
@@ -64,6 +67,8 @@ const getListStyle = (isDraggingOver) => ({
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState(scrolls[0].name);
   const [allCards, setAllCards] = useState([firstCard, secondCard, thirdCard]);
+  // const [theSecondCard, settheSecondCard] = useState([secondCard])
+
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -72,6 +77,7 @@ const HomePage = () => {
     if (!destination) {
       return;
     }
+
     const sInd = +source.droppableId;
     const dInd = +destination.droppableId;
 
@@ -88,7 +94,37 @@ const HomePage = () => {
 
       setAllCards(newState.filter((group) => group.length));
     }
+
   }
+
+  // function dragEnd(result) {
+  //   const { source, destination } = result;
+
+  //   // dropped outside the list
+  //   if (!destination) {
+  //     return;
+  //   }
+
+  //   const sInd = +source.droppableId;
+  //   const dInd = +destination.droppableId;
+
+  //   if (sInd === dInd) {
+  //     const object = reorder(theSecondCard[sInd], source.index, destination.index);
+  //     const newState = [...theSecondCard];
+  //     newState[sInd] = object;
+  //     settheSecondCard(newState)
+
+  //     settheSecondCard(newState.filter((group) => group.length));
+  //   } else {
+  //     const result = move(secondCard[sInd], secondCard[dInd], source, destination);
+  //     const newState = [...secondCard];
+  //     newState[sInd] = result[sInd];
+  //     newState[dInd] = result[dInd];
+
+  //     settheSecondCard(newState.filter((group) => group.length));
+  //   }
+
+  // }
 
   return (
     <div className="h-[100%]">
@@ -115,6 +151,7 @@ const HomePage = () => {
               <img className="" src={add} />
             </div>
           </div>
+
         </div>
       </div>
 
@@ -127,7 +164,7 @@ const HomePage = () => {
 
       {/* {activeTab === scrolls[0].name && ( */}
       <div className="w-full flex overflow-x-scroll gap-5 bg-blue-100 p-5">
-        <DragDropContext onDragEnd={onDragEnd}>
+        <DragDropContext onDragEnd={onDragEnd} >
           {allCards.map((items, i) => {
             return (
               <Droppable key={i + 1} droppableId={i?.toString()}>
@@ -137,7 +174,6 @@ const HomePage = () => {
                     style={getListStyle(snapshot.isDraggingOver)}
                     {...provided.droppableProps}
                   >
-                    <h1 className="text-black text-xl">Title {i}</h1>
                     {items.map((item, index) => (
                       <Draggable
                         key={item.id}
@@ -154,7 +190,9 @@ const HomePage = () => {
                               provided.draggableProps.style
                             )}
                           >
-                            <div className="flex flex-col items-center bg-white rounded-lg p-2 gap-2">
+
+
+                            <div className="flex flex-col bg-white rounded-lg p-2 gap-2">
                               <div
                                 className={`flex justify-start w-full px-5 ${item.color} px-2`}
                               >
@@ -162,6 +200,7 @@ const HomePage = () => {
                                   className={`text-[8px] flex ${item.bg_color} px-1 rounded-sm font-bold`}
                                 >
                                   {item.priority} priority
+
                                 </p>
                               </div>
 
@@ -180,10 +219,33 @@ const HomePage = () => {
                                 <p>{item.heading}</p>
                               </div>
 
+                              <div className="w-full justify-start flex px-5 font-semibold text-md">
+                                <p>{item.topic}</p>
+                              </div>
+
                               <div className="flex w-full justify-start px-5 gap-2">
                                 <img className="h-5" src={item.Images} />
                                 <p className="text-sm">{item.time}</p>
                               </div>
+
+
+                              <div className='text-sm flex flex-col gap-1 items-start'>
+                                <div className='flex gap-2'>
+                                  <div><img className='h-5' src={item.select} /></div>
+                                  <p>{item.option1}</p>
+                                </div>
+
+                                <div className='flex gap-2'>
+                                  <div><img className='h-5' src={item.select} /></div>
+                                  <p>{item.option2}</p>
+                                </div>
+
+                                <div className='flex gap-2'>
+                                  <div><img className='h-5' src={item.select} /></div>
+                                  <p>{item.option3}</p>
+                                </div>
+                              </div>
+
 
                               <div className="flex text-xs w-full justify-between px-5">
                                 <p>{item.date}</p>
@@ -191,6 +253,8 @@ const HomePage = () => {
                                 <p>View</p>
                               </div>
                             </div>
+
+
                           </div>
                         )}
                       </Draggable>
@@ -201,8 +265,56 @@ const HomePage = () => {
             );
           })}
         </DragDropContext>
+
+
+
+        {/* <DragDropContext onDragEnd={dragEnd}>
+          {secondCard.map((object, i) => {
+            return (
+              <Droppable key={i + 1} droppableId={i?.toString()}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    {...provided.droppableProps}
+                  >
+                    {object.map((item, index) => {
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id?.toString()}
+                        index={index}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style
+                            )}
+                          >
+
+                            <div>
+                              hhhdh
+                            </div>
+
+                          </div>
+                        )}
+                      </Draggable>
+                    })}
+                  </div>
+                )}
+              </Droppable>
+            )
+          })
+          }
+
+
+        </DragDropContext> */}
+
       </div>
-      {/* )} */}
+
 
       {activeTab === scrolls[1].name && (
         <div className="bg-red-200">another</div>
