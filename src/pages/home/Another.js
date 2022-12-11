@@ -4,7 +4,6 @@ import add from "../../assets/icons/people/add.png";
 import {
     firstArray,
     firstCard,
-    scroll,
     scrolls,
     secondCard,
     thirdCard,
@@ -12,27 +11,26 @@ import {
     head,
     task_cards
 } from "../../utils/data";
-import { Every } from "./every";
 import arrow_circle_fill from "../../assets/icons/arrow_circle_fill.png";
 import comment from "../../assets/icons/comment.png";
 import eighty from "../../assets/icons/eighty.png";
 import plus from "../../assets/icons/plus.png";
 import addicon from "../../assets/icons/addicon.png";
+import wallpaper from "../../assets/images/wallpaper.png"
+import Card from './Card'
+import Done from './Done'
+import Progress from './Progress'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import Card from "../../pages/home/Card";
-import Progress from "./Progress";
-import Done from "./Done";
-
 
 
 // Start dnd functions
-
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
 
     return result;
+
 };
 
 /**
@@ -42,20 +40,23 @@ const move = (source, destination, droppableSource, droppableDestination) => {
     const sourceClone = Array.from(source);
     const destClone = Array.from(destination);
     const [removed] = sourceClone.splice(droppableSource.index, 1);
-
+    // doings is here
     destClone.splice(droppableDestination.index, 0, removed);
 
     const result = {};
     result[droppableSource.droppableId] = sourceClone;
     result[droppableDestination.droppableId] = destClone;
 
+
     return result;
 };
+
+
 const grid = 8;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
-    userSelect: "none",
+    // userSelect: "none",
 
     margin: `0 0 ${grid}px 0`,
 
@@ -71,11 +72,10 @@ const getListStyle = (isDraggingOver) => ({
 
 
 
+
 const Another = () => {
     const [activeTab, setActiveTab] = useState(scrolls[0].name);
     const [allCards, setAllCards] = useState([firstCard, secondCard, thirdCard]);
-    // const [allSecond, setallSecond] = useState(firstCard)
-
 
     function onDragEnd(result) {
         const { source, destination } = result;
@@ -90,6 +90,7 @@ const Another = () => {
         const sInd = +source.droppableId;
         const dInd = +destination.droppableId;
 
+
         if (sInd === dInd) {
             const items = reorder(allCards[sInd], source.index, destination.index);
             const newState = [...allCards];
@@ -103,6 +104,7 @@ const Another = () => {
 
             setAllCards(newState.filter((group) => group.length));
         }
+
 
     }
 
@@ -140,7 +142,7 @@ const Another = () => {
 
 
             {/* the scrolls */}
-            <div className="flex gap-10 text-sm overflow-x-scroll font-bold text-[#1d4c417d]">
+            <div className="flex gap-20 text-sm overflow-x-scroll font-bold text-[#1d4c417d]">
                 {scrolls.map((scrollz) => (
                     <p onClick={() => setActiveTab(scrollz.name)}>{scrollz.name}</p>
                 ))}
@@ -148,49 +150,34 @@ const Another = () => {
 
 
             {activeTab === scrolls[0].name && (
-                <div className="w-full flex overflow-x-scroll gap-5 bg-blue-100 p-5">
-
-
-                    {/* the heading */}
-                    {/* <div className="flex items-center gap-2 w-full justify-between py-2">
-                        <div className='flex gap-3'>
-                            {head.map((had, id) => (
-                                <p className='text-xs font-bold'>{had.name}</p>
-                            ))
-
-                            }
-                            <div className='rounded-2xl h-4 w-4 bg-[#eab20879] text-xs flex justify-center'>2</div>
-                        </div>
-
-
-                        <div>
-                            <img className='h-4' src={plus} />
-                        </div>
-                    </div> */}
+                <div className="w-full flex overflow-x-scroll gap-5 p-5" style={{ background: `url(${wallpaper})` }}>
 
                     <DragDropContext onDragEnd={onDragEnd}>
+
                         {allCards.map((items, i) => {
                             return (
                                 <div>
 
+
                                     {/* the heading */}
-                                    {/* <div className="flex items-center gap-2 w-full justify-between py-2">
-                                        <div className='flex gap-3'>
-                                            {head.map((had, id) => (
-                                                <p className='text-xs font-bold'>{had.name}</p>
-                                            ))
+                                    {/* {head.map((item, index) => (
+                                    <div>
+                                        <div className="flex items-center gap-2 w-full justify-between py-2">
+                                            <div className='flex gap-3'>
 
-                                            }
-                                            <div className='rounded-2xl h-4 w-4 bg-[#eab20879] text-xs flex justify-center'>2</div>
+                                                <p className='text-xs font-bold'>{item.name}</p>
+
+
+                                                <div className='rounded-2xl h-4 w-4 bg-[#eab20879] text-xs flex justify-center'>2</div>
+                                            </div>
+
+
+                                            <div>
+                                                <img className='h-4' src={plus} />
+                                            </div>
                                         </div>
-
-
-                                        <div>
-                                            <img className='h-4' src={plus} />
-                                        </div>
-                                    </div> */}
-
-                                    
+                                    </div>
+                                    ))}  */}
 
 
                                     <Droppable key={i + 1} droppableId={i?.toString()}>
@@ -199,28 +186,27 @@ const Another = () => {
                                                 ref={provided.innerRef}
                                                 style={getListStyle(snapshot.isDraggingOver)}
                                                 {...provided.droppableProps}
+                                            // {...provided.placeholder}
 
                                             >
+                                                {/* <div>
+                                                    {head.map((headd) => (
+                                                        <p>{headd.name}</p>
+                                                    ))}
+                                                </div> */}
+
 
                                                 {items.map((item, index) => (
 
                                                     <div>
-                                                        <header>
-                                                            {item.colum_name}
-                                                        </header>
 
-                                                        
-                                                       
-
-                                                        <div className='w-full min-w-[330px] flex flex-col gap-3 '>
-                                                            {/* {item.task_cards.map( */}
-
+                                                        <div className='w-[330px] flex flex-col'>
                                                             <Draggable
                                                                 key={item.id}
                                                                 draggableId={item.id?.toString()}
                                                                 index={index}
                                                             >
-                                                                
+
                                                                 {(provided, snapshot) => (
                                                                     <div
                                                                         ref={provided.innerRef}
@@ -233,8 +219,10 @@ const Another = () => {
                                                                         )}
 
                                                                     >
-                                                                        <div>
-                                                                            <div className="flex flex-col bg-white rounded-lg p-2 gap-1">
+
+                                                                        <div className="flex flex-col">
+
+                                                                            <div className=" w-full flex flex-col bg-white rounded-lg p-2 gap-1">
                                                                                 {item.priority ? <div
                                                                                     className={`flex justify-start w-full px-5 ${item.color} px-2`}
                                                                                 >
@@ -244,7 +232,7 @@ const Another = () => {
                                                                                         {item.priority} priority
 
                                                                                     </p>
-                                                                                </div>:<div/>}
+                                                                                </div> : <div />}
 
                                                                                 {item.Image ? <div className="relative w-full">
                                                                                     <img
@@ -257,26 +245,36 @@ const Another = () => {
                                                                                     />
                                                                                 </div> : <div />}
 
-                                                                                <div className="w-full justify-start font-bold flex px-5 text-sm">
+                                                                                {item.heading ? <div className="w-full justify-start font-bold flex px-5 text-sm">
                                                                                     <p>{item.heading}</p>
-                                                                                </div>
+                                                                                </div> : <div />}
 
-                                                                                <div className="w-full justify-start flex px-5 font-semibold text-md">
+                                                                                {item.topic ? <div className="w-full justify-start flex px-5 font-semibold text-md">
                                                                                     <p>{item.topic}</p>
-                                                                                </div>
+                                                                                </div> : <div />}
 
                                                                                 {item.content ? <div className="w-full flex px-5 gap-3">
                                                                                     <div className='w-[30%]'>
                                                                                         <img src={eighty} />
                                                                                     </div>
 
-                                                                                    <div className="w-[70%] text-sm flex items-center">
-                                                                                        <p>{item.content}</p>
+                                                                                    <div className="w-[70%] text-sm flex flex-col items-center gap-3">
+                                                                                        <div>
+                                                                                            <p>{item.content}</p>
+                                                                                        </div>
+
+                                                                                        <div className="flex text-xs w-full justify-between px-5">
+                                                                                            <p>Aug 18th</p>
+
+                                                                                            <div><img className="" src={comment} /></div>
+
+                                                                                            <p>View</p>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div> : <div />}
 
 
-                                                                                {item.date ? <div className="flex w-full justify-start px-5 gap-2">
+                                                                                {item.time ? <div className="flex w-full justify-start px-5 gap-2">
                                                                                     <img className="h-5" src={item.Images} />
                                                                                     <p className="text-sm">{item.time}</p>
                                                                                 </div> : <div />}
@@ -287,7 +285,7 @@ const Another = () => {
                                                                                     <p>{item.subtitle}</p>
                                                                                 </div> : <div />}
 
-                                                                                {item.option1 ? <div className='text-sm flex flex-col gap-1 items-start px-5'>
+                                                                                {item.option1 ? <div className='text-sm flex flex-col gap-1 items-start px-5 p-2'>
                                                                                     <div className='flex gap-2'>
                                                                                         <div><img className='h-5' src={item.select} /></div>
                                                                                         <p>{item.option1}</p>
@@ -314,13 +312,22 @@ const Another = () => {
                                                                                 </div> : <div />}
 
 
-
                                                                                 {item.validation ? <div className="flex text-xs w-full justify-between px-5">
                                                                                     <p className='bg-green-400 p-1 rounded-lg'>{item.validation}</p>
 
                                                                                     <div><img className="" src={comment} /></div>
 
                                                                                     <p>View</p>
+                                                                                </div> : <div />}
+
+                                                                                {item.image ? <div className="h-3 w-4">
+                                                                                    <img className="h-2 w-4" src={Image} />
+                                                                                </div> : <div />}
+
+
+                                                                                {item.adding ? <div className="flex justify-center items-center">
+                                                                                    <div><img className="relative bottom-5" src={add} /></div>
+                                                                                    <p className="hidden">{item.adding}</p>
                                                                                 </div> : <div />}
 
                                                                             </div>
@@ -332,36 +339,24 @@ const Another = () => {
                                                                 )}
                                                             </Draggable>
 
-{/* )} */}
+
                                                         </div>
 
                                                     </div>
 
                                                 ))}
 
-                                                {/* <div className='w-full min-w-[330px] h-14 bg-white mb-5 rounded-lg flex justify-center items-center'>
-                                                    <img className='' src={addicon} />
-                                                </div> */}
 
-
-                                                {/* {provided.placeholder} */}
                                             </div>
-
-
-
 
                                         )}
 
-
-
-
-
                                     </Droppable>
 
-
-                                    <div className='w-full min-w-[330px] h-14 bg-white mb-5 rounded-lg flex justify-center items-center'>
+                                    {/* <div className='w-[330px] h-14 bg-white mb-5 rounded-lg flex justify-center items-center'>
                                         <img className='' src={addicon} />
-                                    </div>
+                                        
+                                    </div> */}
                                 </div>
 
 

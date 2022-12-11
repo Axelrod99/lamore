@@ -6,7 +6,7 @@ import { thirdCard } from '../../utils/data'
 
 
 
-export default function Done({thirdCard}) {
+export default function Done() {
     return (
         <div>
             <div className='w-full min-w-[330px] flex flex-col gap-3 '>

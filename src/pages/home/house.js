@@ -4,11 +4,11 @@ import gown from '../../assets/images/gown.png'
 import clock from '../../assets/icons/clock.png'
 import shoe from '../../assets/images/shoe.png'
 // import add from '../../assets/icons/add.png'
-// import scrolls from '../../utils/data'
+import scrolls from '../../utils/data'
 
 function House() {
 
-    // const [activeTab, setActiveTab] = useState(scrolls[0].name);
+    const [activeTab, setActiveTab] = useState(scrolls[0].name);
 
     const firstCard = [
         {
@@ -98,7 +98,7 @@ function House() {
                         </p>
                     </div>
 
-                    {/* <div className="flex gap-1">
+                    <div className="flex gap-1">
                         {firstArray.map((firsts) => (
                             <div
                                 className={`rounded-2xl h-8 w-8 flex justify-center ${firsts.color}`}
@@ -110,17 +110,17 @@ function House() {
                         <div className="flex justify-center items-center">
                             <img className="" src={add} />
                         </div>
-                    </div> */}
+                    </div>
 
                 </div>
             </div>
 
             {/* the scrolls */}
-            {/* <div className="flex gap-10 text-sm overflow-x-scroll font-bold text-[#1d4c417d]">
+            <div className="flex gap-10 text-sm overflow-x-scroll font-bold text-[#1d4c417d]">
                 {scrolls.map((scrollz) => (
                     <p onClick={() => setActiveTab(scrollz.name)}>{scrollz.name}</p>
                 ))}
-            </div> */}
+            </div>
 
             <div className="w-full flex overflow-x-scroll gap-5 bg-blue-100 p-5">
                 <Every />

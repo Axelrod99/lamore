@@ -6,6 +6,8 @@ import gown from "../assets/images/gown.png";
 import clock from "../assets/icons/clock.png";
 import select from "../assets/icons/select.png";
 import shoe from "../assets/images/shoe.png";
+import addicon from "../assets/icons/addicon.png";
+import add from '../assets/icons/add.png';
 
 export const firstArray = [
   { Image: aaa, color: "bg-red-400", },
@@ -26,9 +28,9 @@ export const scrolls = [
 ];
 
 export const head = [
-  { name: 'Todo' },
-  { name: 'In Progress' },
-  { name: 'Done' }
+  { name: "Todo", id: 1},
+  { name: "In Progress", id: 2 },
+  { name: "Done", id:3 }
 ]
 
 export const firstCard = [
@@ -42,8 +44,8 @@ export const firstCard = [
         date: "Aug 18th",
         color: "text-purple-700",
         bg_color: "bg-purple-300",
+        // image: addicon,
         id: 1,
-
       },
       {
         priority: "mid",
@@ -61,16 +63,18 @@ export const firstCard = [
         bg_color: "bg-purple-300",
         heading: "Choose meals for reception",
         topic: "Appetizers",
+        date : "Aug 18th",
         option1: "Chicken soup",
         option2: "Salad",
         option3: "Small chops",
-
-        color: "text-purple-400",
-        bg_color: "bg-purple-200",
         id: 3,
         select: select,
-
       },
+
+      // {
+      //   id:7,
+      //   adding: "add"
+      // }
   //   ]
   // }
 ];
@@ -82,12 +86,16 @@ export const secondCard = [
       {
         priority: "low",
         heading: "DJ Selection",
-        date: "Aug 18th",
         content: "Currently in price negotiation phase.",
         color: "text-green-600",
         bg_color: "bg-green-200",
         id: 4,
       },
+
+      // {
+      //   id:7,
+      //   adding: "add"
+      // }
   //   ]
   // }
 ];
@@ -116,6 +124,11 @@ export const thirdCard = [
         id: 6,
 
       },
+      // {
+      //   id:7,
+      //   adding: "add"
+
+      // }
   //   ]
   // }
 ];
